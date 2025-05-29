@@ -39,11 +39,14 @@ const Navbar = () => {
                     </Link>
                 ))}
                 <motion.button
-                onClick={toggleTheme}>
+                onClick={toggleTheme}
+                className='p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors'
+                whileHover={{scale:1}}
+                whileTap={{scale: 0.8}}>
                      {theme === 'dark' ? (
                     <SunIcon className="h-5 w-5" />
                     ) : (
-                        <MoonIcon className="h-5 w-5" />
+                     <MoonIcon className="h-5 w-5" />
                     )}
                 </motion.button>
             </div>
@@ -87,7 +90,9 @@ const Navbar = () => {
                         <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: menuItems.length * 0.2 }}>
+                        transition={{ delay: menuItems.length * 0.2 }}
+                        whileHover={{scale: 1}}
+                        whileTap={{scale: .7}}>
                             <button onClick={()=> {
                                 toggleTheme()
                                 setIsMobileMenuOpen(false)
