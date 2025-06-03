@@ -1,8 +1,45 @@
-export interface Project {
+import { insertEducationSchema, insertExperienceSchema, insertProjectSchema, insertSkillSchema } from "@/utils/validators"
+import {z} from "zod"
+
+export interface BackendProject {
+    id: string
     title: string
     description: string
     technologies: string[]
+    images: string[]
     githubLink: string
     demoLink: string
-    image: string
 }
+
+export interface BackendSkill {
+    id: string
+    title: string
+    level: number
+    image: string
+    category: string
+}
+
+export interface BackendExperience {
+    id:        string    
+    role:     string
+    company:   string
+    location:  string
+    image:     string
+    startDate: Date
+    endDate?:  Date | null
+    duties:  string[]
+}
+
+export interface BackendEducation {
+    id:        string  
+    degree:    string
+    school:    string
+    image:     string
+    year:      Date
+    knowledge: string[]
+}
+
+export type FrontEndProject = z.infer<typeof insertProjectSchema>
+export type FrontEndSkill = z.infer<typeof insertSkillSchema>
+export type FrontEndExperience = z.infer<typeof insertExperienceSchema>
+export type FrontEndEducation = z.infer<typeof insertEducationSchema>

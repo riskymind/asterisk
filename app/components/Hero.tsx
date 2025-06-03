@@ -11,7 +11,7 @@ import Link from 'next/link'
 
 const Hero = () => {
   return (
-    <section className='py-28'>
+    <section className='py-22'>
         <div className='container max-w-7xl mx-auto px-4'>
             <div className='max-w-3xl mx-auto text-center'>
                 <motion.div
@@ -89,7 +89,7 @@ const Hero = () => {
                     <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}>
-                        <Link href="/project" className='bg-primary w-full md:w-auto text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors inline-block'>
+                        <Link href="/projects" className='bg-primary w-full md:w-auto text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors inline-block'>
                             View Projects
                         </Link>
                     </motion.div>

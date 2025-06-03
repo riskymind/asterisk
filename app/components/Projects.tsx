@@ -1,29 +1,24 @@
 'use client'
 
-import { projects } from '@/contents/Project'
 import Image from 'next/image'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer, cardHoverSmall } from '@/utils/animations'
+import { FrontEndProject } from '@/types'
 
-export default function Projects() {
+
+export default function Projects({data}: {data: FrontEndProject[]}) {
+
   return (
-    <section className="py-20">
+    <section className="py-10">
       <div className="container max-w-7xl mx-auto px-4">
-        <motion.h2 
-          className="text-3xl font-bold mb-12 text-center"
-          {...fadeInUp}
-        >
-          Featured Projects
-        </motion.h2>
-
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          {projects.map((project: {title: string, image: string, description: string, technologies: string[],githubLink: string, demoLink:string}) => (
+          {data.map((project: {title: string, images: string[], description: string, technologies: string[],githubLink: string, demoLink:string}) => (
             <motion.article
               key={project.title}
               className="bg-white dark:bg-dark/50 rounded-lg shadow-md p-6"
@@ -32,7 +27,7 @@ export default function Projects() {
             >
               <div className="relative aspect-video mb-4 rounded-lg overflow-hidden">
                 <Image
-                  src={project.image}
+                  src={project.images[0]}
                   alt={project.title}
                   fill
                   className="object-cover"
