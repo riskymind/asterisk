@@ -11,9 +11,18 @@ import Education from '../components/Education';
 
 export default async function About() {
 
-  const backendSkillsData: BackendSkill[] = await getAllSkills();
-  const backendExpData: BackendExperience[] = await getAllExperience()
-  const backendEduData: BackendEducation[] = await getAllEducation()
+  // const backendSkillsData: BackendSkill[] = await getAllSkills();
+  // const backendExpData: BackendExperience[] = await getAllExperience()
+  // const backendEduData: BackendEducation[] = await getAllEducation()
+
+  // ✅ Fetch all in parallel
+  const [backendSkillsData, backendExpData, backendEduData]:[
+    BackendSkill[], BackendExperience[], BackendEducation[]
+  ] = await Promise.all([
+    getAllSkills(),
+    getAllExperience(),
+    getAllEducation(),
+  ]);
   
   const transformedFrontEnd: FrontEndSkill[] = backendSkillsData
   .filter(project => project.category === "frontend")
@@ -56,7 +65,7 @@ export default async function About() {
     <div className="container max-w-7xl mx-auto py-12">
       
       <h1 
-        className="text-4xl font-bold mb-8 text-center"
+        className="text-4xl font-bold mb-8 text-center shadow-xl text-shadow-lg drop-shadow-lg"
       >
         About Me
       </h1>
@@ -75,12 +84,14 @@ export default async function About() {
       {/* Skills Section */}
        <Skills frontEnd={transformedFrontEnd} backEnd={transformedBackEnd}/>
       
+      <div className='flex justify-between flex-wrap md:flex-nowrap gap-4'>
+        {/* Experience Section */}
+        <Experience exp={transformedExp}/>
 
-      {/* Experience Section */}
-      <Experience exp={transformedExp}/>
-
-      {/* Education Section */}
-      <Education education={transformedEdu}/>
+        {/* Education Section */}
+        <Education education={transformedEdu}/>
+      </div>
+      
 
     </div>
   )

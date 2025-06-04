@@ -2,6 +2,7 @@
 import { cardHoverSmall, fadeIn, fadeInUp, staggerContainer } from '@/utils/animations'
 import { motion } from 'framer-motion'
 import {FrontEndExperience} from "@/types"
+import Image from 'next/image'
 
 const Experience = ({exp}: {exp: FrontEndExperience[]}) => {
   return (
@@ -11,7 +12,7 @@ const Experience = ({exp}: {exp: FrontEndExperience[]}) => {
         transition={{ delay: 0.4 }}
       >
         <motion.h2 
-          className="section-title"
+          className="section-title text-shadow-lg drop-shadow-lg"
           {...fadeInUp}
         >
           Experience
@@ -24,18 +25,21 @@ const Experience = ({exp}: {exp: FrontEndExperience[]}) => {
         >
             {exp.map((ex, index)=> (
             <motion.div 
-                className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md"
+                className="bg-white dark:bg-dark/50 p-6 rounded-lg shadow-md flex items-center gap-3"
                 variants={fadeInUp}
                 {...cardHoverSmall}
                 key={index}
             >
-                <h3 className="text-xl font-semibold mb-2">{ex.role}</h3>
-                <p className="text-primary mb-2">{ex.company} • {ex.startDate.toString()} - {ex.endDate ? ex.endDate.toString() : "Present"}</p>
-                <ul className="text-secondary list-disc list-inside space-y-2">
-                    {ex.duties.map((duty, index) => (
-                        <li key={index}>{duty}</li>
-                    ))}
-                </ul>
+                <Image src={ex.image} alt={ex.company} width={100} height={100} className='rounded-lg'/>
+                <div>
+                    <h3 className="text-xl font-semibold mb-2">{ex.role}</h3>
+                    <p className="text-primary mb-2">{ex.company} • {ex.startDate.toString()} - {ex.endDate ? ex.endDate.toString() : "Present"}</p>
+                    <ul className="text-secondary list-disc list-inside space-y-2">
+                        {ex.duties.map((duty, index) => (
+                            <li key={index}>{duty}</li>
+                        ))}
+                    </ul>
+                </div>
           </motion.div>
             ))}
           

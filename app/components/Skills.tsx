@@ -22,7 +22,7 @@ const Skills = ({frontEnd, backEnd}: {frontEnd: FrontEndSkill[], backEnd: FrontE
             transition={{ delay: 0.2 }}
           >
             <motion.h2 
-              className="section-title"
+              className="section-title  text-shadow-lg drop-shadow-lg"
               {...fadeInUp}
             >
               Skills

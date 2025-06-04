@@ -52,7 +52,6 @@ const sampleData = {
           location: "Kenya",
           image: "/projects/zuri_health.png",
           startDate: "2022-04-15T00:00:00.000Z",
-          endDate: "2026-12-31T00:00:00.000Z",
           duties: [""] 
         },
         {
@@ -77,7 +76,7 @@ const sampleData = {
           role: "Frontend Developer",
           company: "Lotus Beta Analytics",
           location: "Nigeria",
-          image: "/projects/lotu_beta.png",
+          image: "/projects/lotus_beta.png",
           startDate: "2016-04-03T00:00:00.000Z",
           endDate: "2018-02-14T00:00:00.000Z",
           duties: [""] 
