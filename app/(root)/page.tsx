@@ -1,8 +1,9 @@
 import { BackendProject, FrontEndProject } from "@/types";
-import Hero from "./components/Hero";
-import Projects from "./components/Projects";
 import { getLatestProjects } from '@/lib/actions/projects.actions'
-import ViewAllButton from "./components/ViewAllButton";
+import Hero from "../components/Hero";
+import Projects from "../components/Projects";
+import ViewAllButton from "../components/ViewAllButton";
+
 
 
 export default async function Home() {
