@@ -1,6 +1,6 @@
 import {  getAllProjects } from "@/lib/actions/projects.actions";
 import { BackendProject, FrontEndProject } from "@/types";
-import Projects from "../components/Projects";
+import Projects from "@/app/components/Projects";
 
 export default async function ProjectsPage() {
   const backendData: BackendProject[] = await getAllProjects();

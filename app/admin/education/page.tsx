@@ -1,5 +1,6 @@
-import { getAllEducation } from "@/lib/actions/education.actions"
-import {shortenId, shortenString} from "@/lib/utils"
+import DeleteButton from "@/app/components/admin/DeleteButton"
+import { getAllEducation, deleteEducation } from "@/lib/actions/education.actions"
+import {shortenId, formatDate} from "@/lib/utils"
 import Link from "next/link"
 
 const AdminEducations =  async () => {
@@ -31,10 +32,19 @@ const AdminEducations =  async () => {
                   <td className="p-3 text-sm text-gray-600">{shortenId(education.id)}</td>
                   <td className="p-3 text-sm text-gray-600">{education.degree}</td>
                   <td className="p-3 text-sm text-gray-600">{education.school}</td>
-                  <td className="p-3 text-sm text-gray-600">{education.year.toString()}</td>
+                  <td className="p-3 text-sm text-gray-600">{formatDate(education.year.toString())}</td>
                   <td className="flex gap-1">
-                    <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">Edit</button>
-                    <button className="py-2 px-4 bg-red-200 text-red-800 rounded-sm">Delete</button>
+                    <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">
+                      <Link href={`/admin/education/${education.id}`}>
+                        Edit
+                      </Link>
+                    </button>
+                    <DeleteButton
+                      id={education.id}
+                      deleteAction={deleteEducation}
+                      entityName="education"
+                    />
+
                   </td>
                 </tr>
               ))}

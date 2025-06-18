@@ -1,12 +1,12 @@
 // 'use client'
 
 import { getAllExperience } from '@/lib/actions/exp.actions';
-import Skills from '../components/Skills'
+import Skills from '@/app/components/Skills'
 import { getAllSkills } from '@/lib/actions/skills.actions';
 import { BackendEducation, BackendExperience, BackendSkill, FrontEndEducation, FrontEndExperience, FrontEndSkill } from '@/types';
 import { getAllEducation } from '@/lib/actions/education.actions';
-import Experience from '../components/Experience';
-import Education from '../components/Education';
+import Experience from '@/app/components/Experience';
+import Education from '@/app/components/Education';
 
 
 export default async function About() {

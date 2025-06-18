@@ -26,7 +26,7 @@ const transformedProjects: FrontEndProject[] = backendData.map((project) => ({
           Featured Projects
         </h2>
       <Projects data={transformedProjects}/>
-      <ViewAllButton urlLink="projects" title="Projects"/>
+      {transformedProjects.length > 3 && <ViewAllButton urlLink="projects" title="Projects"/>}
     </>
   );
 }

@@ -43,3 +43,21 @@ export type FrontEndProject = z.infer<typeof insertProjectSchema>
 export type FrontEndSkill = z.infer<typeof insertSkillSchema>
 export type FrontEndExperience = z.infer<typeof insertExperienceSchema>
 export type FrontEndEducation = z.infer<typeof insertEducationSchema>
+
+export type Project = z.infer<typeof insertProjectSchema> & {
+    id: string,
+    createdAt: Date
+}
+
+export type Experience = z.infer<typeof insertExperienceSchema> & {
+    id: string
+}
+
+export type Education = z.infer<typeof insertEducationSchema> & {
+    id: string
+}
+
+export type Skill = z.infer<typeof insertSkillSchema> & {
+    id: string
+}
+

@@ -1,6 +1,7 @@
-import { getAllProjects } from "@/lib/actions/projects.actions"
+import { getAllProjects, deleteProject } from "@/lib/actions/projects.actions"
 import {shortenId, shortenString} from "@/lib/utils"
 import Link from "next/link"
+import DeleteButton  from "@/app/components/admin/DeleteButton"
 
 const AdminProjects =  async () => {
   const projects = await getAllProjects()
@@ -12,7 +13,7 @@ const AdminProjects =  async () => {
             <h1>Projects</h1>
           </div>
           <button className="px-4 py-2 bg-gray-300 text-gray-800 rounded">
-              <Link href="/admin/project/create">Create Project</Link>
+              <Link href="/admin/projects/create">Create Project</Link>
             </button>
         </div>
         <table className="mx-auto">
@@ -33,8 +34,17 @@ const AdminProjects =  async () => {
                   <td className="p-3 text-sm text-gray-600">{shortenString(project.description)}</td>
                   <td className="p-3 text-sm text-gray-600">{project.technologies[0]}</td>
                   <td className="flex gap-1">
-                    <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">Edit</button>
-                    <button className="py-2 px-4 bg-red-200 text-red-800 rounded-sm">Delete</button>
+                    <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">
+                      <Link href={`/admin/projects/${project.id}`}>
+                        Edit
+                      </Link>
+                    </button>
+                    <DeleteButton
+                      id={project.id}
+                      deleteAction={deleteProject}
+                      entityName="project"
+                    />
+
                   </td>
                 </tr>
               ))}

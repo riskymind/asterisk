@@ -1,5 +1,6 @@
-import { getAllExperience } from "@/lib/actions/exp.actions"
-import {shortenId, shortenString} from "@/lib/utils"
+import DeleteButton from "@/app/components/admin/DeleteButton"
+import { getAllExperience, deleteExperience } from "@/lib/actions/exp.actions"
+import {shortenId} from "@/lib/utils"
 import Link from "next/link"
 
 const AdminExperience =  async () => {
@@ -12,7 +13,7 @@ const AdminExperience =  async () => {
             <h1>Experience</h1>
           </div>
           <button className="px-4 py-2 bg-gray-300 text-gray-800 rounded">
-              <Link href="/admin/experience/create">Create Project</Link>
+              <Link href="/admin/experience/create">Add Experience</Link>
             </button>
         </div>
         <table className="mx-auto">
@@ -32,9 +33,18 @@ const AdminExperience =  async () => {
                   <td className="p-3 text-sm text-gray-600">{exp.role}</td>
                   <td className="p-3 text-sm text-gray-600">{exp.company}</td>
                   <td className="p-3 text-sm text-gray-600">{exp.location}</td>
-                  <td className="flex gap-1">
-                    <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">Edit</button>
-                    <button className="py-2 px-4 bg-red-200 text-red-800 rounded-sm">Delete</button>
+                     <td className="flex gap-1">
+                    <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">
+                      <Link href={`/admin/experience/${exp.id}`}>
+                        Edit
+                      </Link>
+                    </button>
+                    <DeleteButton
+                      id={exp.id}
+                      deleteAction={deleteExperience}
+                      entityName="experience"
+                    />
+
                   </td>
                 </tr>
               ))}

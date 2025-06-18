@@ -5,6 +5,7 @@ import { cardHoverSmall, fadeIn, fadeInUp, staggerContainer } from '@/utils/anim
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import React from 'react'
+import { formatDate } from '@/lib/utils'
 
 const Education = ({education}: {education: FrontEndEducation[]}) => {
   return (
@@ -35,7 +36,7 @@ const Education = ({education}: {education: FrontEndEducation[]}) => {
             <Image src={edu.image} alt={edu.school} width={80} height={80} className='rounded-lg'/>
             <div className=''>
                 <h3 className="text-xl font-semibold mb-2">{edu.degree}</h3>
-                <p className="text-primary mb-2">{edu.school} • {edu.year.toString()}</p>
+                <p className="text-primary mb-2">{edu.school} • {formatDate(edu.year.toString())}</p>
                 {edu.knowledge.map((know, index)=> (
                 <p className="text-secondary" key={index}>
                     {know}
