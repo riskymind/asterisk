@@ -43,13 +43,9 @@ export default async function About() {
   }));
 
   const transformedExp: FrontEndExperience[] = backendExpData.map((exp)=> ({
-    role: exp.role,
-    company: exp.company,
-    location: exp.location,
-    image: exp.image,
-    startDate: exp.startDate,
-    endDate: exp.endDate ?? undefined,
-    duties: exp.duties
+    ...exp,
+    startDate: exp.startDate.toString(), // or format it how you like
+    endDate: exp.endDate ? exp.endDate?.toString() : '',
   }))
 
    const transformedEdu: FrontEndEducation[] = backendEduData.map((edu)=> ({
@@ -86,10 +82,14 @@ export default async function About() {
       
       <div className='flex justify-between flex-wrap md:flex-nowrap gap-4'>
         {/* Experience Section */}
-        <Experience exp={transformedExp}/>
+        <div>
+          <Experience exp={transformedExp}/>
+        </div>
 
         {/* Education Section */}
-        <Education education={transformedEdu}/>
+        <div>
+          <Education education={transformedEdu}/>
+        </div>
       </div>
       
 

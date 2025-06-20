@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
         port: '',
       },
     ],
+    domains: ['g8kdh41o51.ufs.sh'],
   },
 };
 

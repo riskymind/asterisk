@@ -32,7 +32,7 @@ const AdminEducations =  async () => {
                   <td className="p-3 text-sm text-gray-600">{shortenId(education.id)}</td>
                   <td className="p-3 text-sm text-gray-600">{education.degree}</td>
                   <td className="p-3 text-sm text-gray-600">{education.school}</td>
-                  <td className="p-3 text-sm text-gray-600">{formatDate(education.year.toString())}</td>
+                  <td className="p-3 text-sm text-gray-600">{education.year}</td>
                   <td className="flex gap-1">
                     <button className="py-2 px-4 bg-green-200 text-green-800 rounded-sm">
                       <Link href={`/admin/education/${education.id}`}>

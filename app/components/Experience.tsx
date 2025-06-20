@@ -32,12 +32,13 @@ const Experience = ({exp}: {exp: FrontEndExperience[]}) => {
                 key={index}
             >
                 <Image src={ex.image} alt={ex.company} width={100} height={100} className='rounded-lg'/>
-                <div>
+                <div className='skew-3 hover:skew-0 transition-all delay-150 duration-300 ease-in-out'>
                     <h3 className="text-xl font-semibold mb-2">{ex.role}</h3>
-                    <p className="text-primary mb-2">{ex.company} • {formatDate(ex.startDate.toString())} - {ex.endDate ? formatDate(ex.endDate.toString()) : "Present"}</p>
+                    <p className="text-primary mb-2">{ex.company} • {ex.location}</p>
+                    <p>{formatDate(ex.startDate.toString())} - {ex.endDate ? formatDate(ex.endDate.toString()) : "Present"}</p>
                     <ul className="text-secondary list-disc list-inside space-y-2">
                         {ex.duties.map((duty, index) => (
-                            <li key={index}>{duty}</li>
+                            <li key={index} className='list-none text-xs'>{duty}</li>
                         ))}
                     </ul>
                 </div>

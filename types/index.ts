@@ -14,20 +14,20 @@ export interface BackendProject {
 export interface BackendSkill {
     id: string
     title: string
-    level: number
+    level: string
     image: string
     category: string
 }
 
 export interface BackendExperience {
     id:        string    
-    role:     string
+    role:      string
     company:   string
     location:  string
     image:     string
     startDate: Date
     endDate?:  Date | null
-    duties:  string[]
+    duties:    string[]
 }
 
 export interface BackendEducation {
@@ -35,7 +35,7 @@ export interface BackendEducation {
     degree:    string
     school:    string
     image:     string
-    year:      Date
+    year:      string
     knowledge: string[]
 }
 

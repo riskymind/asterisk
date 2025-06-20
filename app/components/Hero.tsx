@@ -17,7 +17,9 @@ const Hero = () => {
                 <motion.div
                 className='flex justify-center items-center'
                 {...scaleIn}
-                transition={{delay: 0.2}}>
+                whileHover={{scale: 1.2}}
+                whileTap={{scale: 0.9}}
+                >
                     <Image 
                     src="/profile_img.jpg"
                     alt="profile"

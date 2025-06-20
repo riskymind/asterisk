@@ -36,7 +36,7 @@ model Education {
   degree    String
   school    String
   image     String
-  year      DateTime
+  year      String
   knowledge String[]
 }
 
@@ -44,6 +44,6 @@ model skills {
   id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title    String
   image    String
-  level    Int
+  level    String
   category String
 }

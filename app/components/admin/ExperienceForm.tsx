@@ -28,21 +28,22 @@ const router = useRouter()
 const schema = type === 'Update' ? updateExperienceSchema : insertExperienceSchema;
 type ExpFormSchema = z.infer<typeof schema>;
 
+
 const form = useForm<ExpFormSchema>({
     resolver: zodResolver(schema),
     defaultValues: exp && type === 'Update' ? exp : expDefaultValues,
   });
 
+
 const [dutyInput, setDutyInput] = useState('');
-// const [technologies, setTechnologies] = useState<string[]>([]);
 const [duties, setDuties] = useState<string[]>(exp?.duties || []);
 
 useEffect(() => {
   setValue('duties', duties);
 })
 
+
  const onSubmit = async (values: ExpFormSchema) => {
-    // setValue('technologies', technologies); 
     if (type === 'Create') {
       const res = await createExperience(values);
       if (!res.success) return toast.error(res.message);
@@ -64,8 +65,7 @@ useEffect(() => {
   const image = watch('image');
 
   return (
-    <form className='flex flex-col gap-8' method='POST' onSubmit={handleSubmit(onSubmit)}>
-        
+    <form className='flex flex-col gap-8' onSubmit={handleSubmit(onSubmit)}>
         <div className='flex flex-col'>
             <label htmlFor="role" className='block font-medium mb-1'>Role</label>
             <input type="text" placeholder='Enter Experience Role' 
@@ -75,15 +75,20 @@ useEffect(() => {
         
         <div className='flex flex-col'>
             <label htmlFor="company" className='block font-medium mb-1'>Company</label>
-            <textarea id="company" placeholder='Enter Company' className='w-full border px-3 py-2 rounded' {...register("company")}/>
+            <input type='text' id="company" placeholder='Enter Company' className='w-full border px-3 py-2 rounded' {...register("company")}/>
             {errors.company && <span className="text-red-500 text-sm">{errors.company.message}</span>}
         </div>
 
+         <div className='flex flex-col'>
+            <label htmlFor="loc" className='block font-medium mb-1'>Location</label>
+            <input type='text' id="loc" placeholder='Enter Location' className='w-full border px-3 py-2 rounded' {...register("location")}/>
+            {errors.location && <span className="text-red-500 text-sm">{errors.location.message}</span>}
+        </div>
         
         <div className='flex flex-col gap-1'>
             <label className="block font-medium mb-1">Images</label>
             <div className="flex gap-4 items-center">
-            <Image  src={image} alt="product" width={100} height={100} className="rounded" />
+            <Image  src={image} alt="logo" width={100} height={100} className="rounded" />
             <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => setValue('image', res[0].ufsUrl)}
@@ -99,8 +104,8 @@ useEffect(() => {
             {errors.startDate && <span className="text-red-500 text-sm">{errors.startDate.message}</span>}
         </div>
         <div className='flex-1 flex-col'>
-            <label htmlFor="date" className='block font-medium mb-1'>End Date</label>
-            <input type="date" className='w-full border px-3 py-2 rounded' id='date' {...register("endDate")}/>
+            <label htmlFor="e-date" className='block font-medium mb-1'>End Date</label>
+            <input type="date" className='w-full border px-3 py-2 rounded' id='e-date' {...register("endDate")}/>
             {errors.endDate && <span className="text-red-500 text-sm">{errors.endDate.message}</span>}
         </div>
       </div>
@@ -111,7 +116,7 @@ useEffect(() => {
                 {duties.map((duty, index) => (
                 <span
                     key={index}
-                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex items-center gap-1 text-sm"
+                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full flex-col items-center gap-1 text-sm"
                 >
                     {duty}
                     <button

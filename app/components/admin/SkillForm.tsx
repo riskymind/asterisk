@@ -76,9 +76,10 @@ const form = useForm<SkillFormSchema>({
             </div>
         </div>
         
-        <div className='flex flex-col'>
+       <div className="flex justify-between gap-2">
+         <div className='flex-1 flex-col'>
             <label htmlFor="level" className='block font-medium mb-1'>Level</label>
-            <input type="number" className='w-full border px-3 py-2 rounded' id='level' {...register("level")}/>
+            <input type="range" min="1" max="10" className='w-full border px-3 py-2 rounded' id='level' {...register("level")}/>
             {errors.level && <span className="text-red-500 text-sm">{errors.level.message}</span>}
         </div>
 
@@ -87,8 +88,8 @@ const form = useForm<SkillFormSchema>({
             <label htmlFor="git" className='block font-medium mb-1'>Category</label>
             <input type="text" placeholder='Enter Category' className='w-full border px-3 py-2 rounded' id='git' {...register("category")}/>
             {errors.category && <span className="text-red-500 text-sm">{errors.category.message}</span>}
-      
         </div>
+       </div>
 
     <button type="submit" disabled={isSubmitting} className="bg-blue-600 text-white px-6 py-2 rounded disabled:opacity-50">
         {isSubmitting ? 'Submitting...' : `${type} Skill`}

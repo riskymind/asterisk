@@ -34,7 +34,6 @@ const form = useForm<EduFormSchema>({
   });
 
 const [knowInput, setKnowInput] = useState('');
-// const [technologies, setTechnologies] = useState<string[]>([]);
 const [knowledge, setKnowledge] = useState<string[]>(edu?.knowledge || []);
 
 useEffect(() => {
@@ -42,7 +41,6 @@ useEffect(() => {
 })
 
  const onSubmit = async (values: EduFormSchema) => {
-    // setValue('technologies', technologies); 
     if (type === 'Create') {
       const res = await createEducation(values);
       if (!res.success) return toast.error(res.message);
@@ -72,12 +70,20 @@ useEffect(() => {
             className='w-full border px-3 py-2 rounded' id='degree' {...register("degree")}/>
             {errors.degree && <span className="text-red-500 text-sm">{errors.degree.message}</span>}
         </div>
-        
-        <div className='flex flex-col'>
-            <label htmlFor="sch" className='block font-medium mb-1'>School</label>
-            <textarea id="sch" placeholder='Enter School Attended' className='w-full border px-3 py-2 rounded' {...register("school")}/>
-            {errors.school && <span className="text-red-500 text-sm">{errors.school.message}</span>}
+        <div className='flex gap-2'>
+          <div className='flex-1 flex-col'>
+              <label htmlFor="sch" className='block font-medium mb-1'>School</label>
+              <input type='text' id="sch" placeholder='Enter School Attended' className='w-full border px-3 py-2 rounded' {...register("school")}/>
+              {errors.school && <span className="text-red-500 text-sm">{errors.school.message}</span>}
+          </div>
+
+            <div className='flex-1 flex-col'>
+              <label htmlFor="date" className='block font-medium mb-1'>Year</label>
+              <input type="text" placeholder='Choose Year' className='w-full border px-3 py-2 rounded' id='date' {...register("year")}/>
+              {errors.year && <span className="text-red-500 text-sm">{errors.year.message}</span>}
+            </div>
         </div>
+       
         
         <div className='flex flex-col gap-1'>
             <label className="block font-medium mb-1">Image</label>
@@ -91,14 +97,7 @@ useEffect(() => {
             </div>
       </div>
 
-      <div className='flex gap-2'>
-          <div className='flex-1 flex-col'>
-            <label htmlFor="date" className='block font-medium mb-1'>Year</label>
-            <input type="date" placeholder='Choose Year' className='w-full border px-3 py-2 rounded' id='date' {...register("year")}/>
-            {errors.year && <span className="text-red-500 text-sm">{errors.year.message}</span>}
-        </div>
-
-        <div className='flex flex-col gap-2'>
+       <div className='flex flex-col gap-2'>
             <label htmlFor="tech" className='block font-medium mb-1'>Knowledge</label>
             <div className="flex flex-wrap gap-2">
                 {knowledge.map((knw, index) => (
@@ -133,7 +132,6 @@ useEffect(() => {
                 }}/>
             </div>
         </div>
-      </div>
 
     <button type="submit" disabled={isSubmitting} className="bg-blue-600 text-white px-6 py-2 rounded disabled:opacity-50">
         {isSubmitting ? 'Submitting...' : `${type} Education`}

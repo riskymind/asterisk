@@ -12,34 +12,29 @@ export const expValues = {
     company: "",
     location: "",
     image: "",
-    startDate: "2022-04-15T00:00:00.000Z",
-    endDate: "2022-04-15T00:00:00.000Z",
+    startDate:"",
+    endDate: "",
     duties: []
 }
 
 export const expDefaultValues = {
-  ...expValues,
-  startDate: new Date(expValues.startDate),
-  endDate: new Date(expValues.endDate),
+  ...expValues
 };
 
-export const eduValues = {
+
+
+export const eduDefaultValues = {
     degree: "",
     school: "",
     image: "",
-    year: "2022-04-15T00:00:00.000Z",
+    year: "",
     knowledge: []
-}
-
-export const eduDefaultValues = {
-    ...eduValues,
-    year: new Date(eduValues.year)
 }
 
 
 export const skillDefaultValues = {
     title: "",
     image: "",
-    level: 1,
+    level: "1",
     category: "",
 }

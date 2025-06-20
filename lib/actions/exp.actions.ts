@@ -26,43 +26,48 @@ export async function getExperienceById(expId: string) {
 
 // Create a Experience
 export async function createExperience(data: z.infer<typeof insertExperienceSchema>) {
-    try {
-        // const prisma = new PrismaClient()
-        const experience = insertExperienceSchema.parse(data)
-        await prisma.experience.create({data: experience})
+  try {
+    const { startDate, endDate, ...rest } = insertExperienceSchema.parse(data);
 
-        revalidatePath("/admin/experience")
+    await prisma.experience.create({
+      data: {
+        ...rest,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+      },
+    });
 
-        return {
-            success: true,
-            message: "Experience created successfully"
-        }
-    } catch (error) {
-        return {success: false, message: formatError(error)}
-    }
+    revalidatePath("/admin/experience");
+
+    return {
+      success: true,
+      message: "Experience created successfully",
+    };
+  } catch (error) {
+    return { success: false, message: formatError(error) };
+  }
 }
+
 
 // Update a experience
 export async function updateExperience(data: z.infer<typeof updateExperienceSchema>) {
   try {
-    // const prisma = new PrismaClient()
-    const skill = updateExperienceSchema.parse(data);
-    const skillExists = await prisma.skills.findFirst({
-      where: { id: skill.id },
+    const { id, startDate, endDate, ...rest } = updateExperienceSchema.parse(data);
+
+    await prisma.experience.update({
+      where: { id },
+      data: {
+        ...rest,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+      },
     });
 
-    if (!skillExists) throw new Error('Project not found');
-
-    await prisma.project.update({
-      where: { id: skill.id },
-      data: skill,
-    });
-
-    revalidatePath('/admin/skill');
+    revalidatePath("/admin/experience");
 
     return {
       success: true,
-      message: 'Skill updated successfully',
+      message: "Experience updated successfully",
     };
   } catch (error) {
     return { success: false, message: formatError(error) };
