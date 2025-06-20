@@ -21,7 +21,15 @@ export async function getExperienceById(expId: string) {
         where: {id: expId}
     })
 
-    return convertToPlainObject(data)
+    if (!data) return null;
+
+    const res = {
+        ...data,
+        startDate: data.startDate.toISOString().split("T")[0],
+        endDate: data.endDate ? data.endDate.toISOString().split("T")[0] : "",
+    };
+
+    return convertToPlainObject(res)
 }
 
 // Create a Experience
