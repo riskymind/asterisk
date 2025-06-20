@@ -108,31 +108,31 @@ const sampleData = {
     skills: [
         {
             title: "React/Next JS",
-            level: 7,
+            level: "7",
             image: "/projects/nextjs.jpg",
             category: "frontend"
         },
         {
             title: "Tailwind Css",
-            level: 8,
+            level: "8",
             image: "/projects/tailwindcss.webp",
             category: "frontend"
         },
         {
             title: "TypeScript/JavaScript",
-            level: 7,
+            level: "7",
             image: "/projects/js.png",
             category: "frontend"
         },
         {
             title: "HTML5/CSS3",
-            level: 9,
+            level: "9",
             image: "/projects/css3.png",
             category: "frontend"
         },
         {
             title: "Android",
-            level: 8,
+            level: "8",
             image: "/projects/android.jpg",
             category: "frontend"
         }
