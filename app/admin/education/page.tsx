@@ -1,6 +1,6 @@
 import DeleteButton from "@/app/components/admin/DeleteButton"
 import { getAllEducation, deleteEducation } from "@/lib/actions/education.actions"
-import {shortenId, formatDate} from "@/lib/utils"
+import {shortenId} from "@/lib/utils"
 import Link from "next/link"
 
 const AdminEducations =  async () => {
